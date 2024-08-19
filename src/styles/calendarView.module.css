@@ -2,6 +2,7 @@
 @media (max-width: 760px) {
   .calendar-view {
     height: 550px;
+    margin-top: 60px;
   }
 
   .view-inner {
