@@ -1,8 +1,7 @@
 /* Media queries for smaller screens */
 @media (max-width: 760px) {
   .calendar-view {
-    height: 550px;
-    margin-top: 60px;
+    height: auto;
   }
 
   .view-inner {

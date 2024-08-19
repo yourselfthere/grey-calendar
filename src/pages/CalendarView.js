@@ -63,69 +63,73 @@ const CalendarView = () => {
           />
           <div
             className={cn(
-              " h-96 w-96 px-2 shadow-md border-4",
+              " h-auto w-96 px-2 shadow-md border-4 ",
               styles["schedule"]
             )}
           >
             <h1 className={cn(" font-semibold", styles["schedule-header"])}>
               Schedule for {dayjs(selectedDate).toDate().toDateString()}
             </h1>
-            <select
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-              className="mb-4 px-2 py-1 border border-gray-300 rounded"
-            >
-              <option value="all">all</option>
-              <option value="work">work</option>
-              <option value="personal">personal</option>
-            </select>
-            <ul>
-              {/* events */}
-              {filteredEvents
-                .filter(
-                  (event) =>
-                    dayjs(event.date).format("YYYY-MM-DD") === selectedDate
-                )
-                .map((event) => (
-                  <li key={event.id} className="mt-2">
-                    <div className="">
-                      <div className=" flex justify-between shadow-md border-t">
-                        <div>
-                          <Link to={`/event/${event.id}`}>
-                            <span className="ml-2">{event.title}</span>
-                            <p className="ml-2 text-sm text-gray-600">
-                              {event.category}
-                              {/* this category was from EventForm.js */}
-                            </p>
-                          </Link>
-                        </div>
-                        <div>
-                          <Link
-                            to={`/edit/${event.id}`}
-                            className="mt-4 inline-block text-blue-500 underline"
-                          >
-                            Edit Event
-                          </Link>
+            <div className="flex flex-col">
+              <select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                className="mb-4 px-2 py-1 border border-gray-300 rounded"
+              >
+                <option value="all">all</option>
+                <option value="work">work</option>
+                <option value="personal">personal</option>
+              </select>
+              <Link
+                to="/add"
+                className="mt-4 inline-block text-blue-500 underline"
+              >
+                Add Event
+              </Link>
+            </div>
+            <div className="overflow-y-auto max-h-60">
+              <ul>
+                {/* events */}
+                {filteredEvents
+                  .filter(
+                    (event) =>
+                      dayjs(event.date).format("YYYY-MM-DD") === selectedDate
+                  )
+                  .map((event) => (
+                    <li key={event.id} className="mt-2">
+                      <div className="">
+                        <div className=" flex justify-between shadow-md border-t">
+                          <div>
+                            <Link to={`/event/${event.id}`}>
+                              <span className="ml-2">{event.title}</span>
+                              <p className="ml-2 text-sm text-gray-600">
+                                {event.category}
+                                {/* this category was from EventForm.js */}
+                              </p>
+                            </Link>
+                          </div>
+                          <div>
+                            <Link
+                              to={`/edit/${event.id}`}
+                              className="mt-4 inline-block text-blue-500 underline"
+                            >
+                              Edit Event
+                            </Link>
 
-                          <button
-                            onClick={() => handleDeleteEvent(event.id)}
-                            className="ml-4 px-2 py-1 text-xs text-white bg-red-500 rounded hover:bg-red-600"
-                          >
-                            Delete
-                          </button>
+                            <button
+                              onClick={() => handleDeleteEvent(event.id)}
+                              className="ml-4 px-2 py-1 text-xs text-white bg-red-500 rounded hover:bg-red-600"
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-            </ul>
+                    </li>
+                  ))}
+              </ul>
+            </div>
 
-            <Link
-              to="/add"
-              className="mt-4 inline-block text-blue-500 underline"
-            >
-              Add Event
-            </Link>
             {/* <EventList /> */}
           </div>
         </div>
