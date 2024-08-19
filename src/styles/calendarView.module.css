@@ -1,5 +1,5 @@
 /* Media queries for smaller screens */
-@media (max-width: 760px) {
+@media (max-width: 810px) {
   .calendar-view {
     height: auto;
   }
